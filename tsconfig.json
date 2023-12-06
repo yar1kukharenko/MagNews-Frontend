@@ -24,6 +24,9 @@
       "components/*": [
         "components/*"
       ],
+      "assets/*": [
+        "assets/*"
+      ],
       "config/*": [
         "config/*"
       ],
@@ -35,10 +38,18 @@
       ],
       "utils/*": [
         "utils/*"
+      ],
+      "store/*": [
+        "store/*"
       ]
     }
   },
-
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
