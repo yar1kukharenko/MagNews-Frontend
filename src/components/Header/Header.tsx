@@ -1,12 +1,25 @@
 import * as classNames from 'classnames';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logoAlt from 'assets/img/logo-alt.png';
 import logo from 'assets/img/logo.png';
+import { articleAPI } from '../../services/ArticleService.ts';
 
 const Header = () => {
   const [navCollapse, setNavCollapse] = useState(false);
   const [searchCollapse, setSearchCollapse] = useState(false);
+  const { data: categories = [] } = articleAPI.useFetchAllFiltersQuery('');
+  /* const findCategoryTitleById = (id: number) => {
+                         if (categories) {
+                           const category = categories.find((category) => category.id === id);
+                           return category ? category.title : null;
+                         }
+                       };*/
+  const location = useLocation();
+  const pathSegments = location.pathname.split('/').filter(Boolean);
+
+  // Предполагая, что URL имеет формат '/categories/имя_категории'
+  const currentCategory = pathSegments[1];
 
   return (
     <div>
@@ -72,9 +85,6 @@ const Header = () => {
               <Link className="logo" to={'/'}>
                 <img src={logo} alt="" />
               </Link>
-              {/*<a href="#" className="logo">*/}
-              {/*  <img src={logo} alt="" />*/}
-              {/*</a>*/}
             </div>
           </div>
         </div>
@@ -87,27 +97,15 @@ const Header = () => {
                 </a>
               </div>
               <ul className="main-nav nav navbar-nav">
-                <li className="active">
-                  <a href="#">Home</a>
-                </li>
                 <li>
-                  <a href="#">News</a>
+                  <Link to={`/`}>Главная</Link>
                 </li>
-                <li>
-                  <a href="#">Sport</a>
-                </li>
-                <li>
-                  <a href="#">Lifestyle</a>
-                </li>
-                <li>
-                  <a href="#">Fashion</a>
-                </li>
-                <li>
-                  <a href="#">Music</a>
-                </li>
-                <li>
-                  <a href="#">Business</a>
-                </li>
+                {categories &&
+                  categories.map((category) => (
+                    <li key={category.id} className={+currentCategory === category.id && 'active'}>
+                      <Link to={`/categories/${category.id}`}>{category.title}</Link>
+                    </li>
+                  ))}
               </ul>
             </nav>
             <div className="button-nav">
