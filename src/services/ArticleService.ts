@@ -30,5 +30,11 @@ export const articleAPI = createApi({
       }),
       transformResponse: (response: AxiosResponse) => response.data,
     }),
+    fetchArticle: build.query<IArticle, number>({
+      query: (id) => ({
+        url: `/articles/${id}`,
+      }),
+      transformResponse: (response: AxiosResponse) => response.data,
+    }),
   }),
 });
