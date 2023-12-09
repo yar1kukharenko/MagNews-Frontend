@@ -16,6 +16,7 @@ export const articleAPI = createApi({
     fetchAllArticles: build.query<IArticle[], FetchAllArticlesParams>({
       query: ({ category, start, end }) => ({
         url: '/articles',
+
         params: {
           category: category,
           start: start,
@@ -27,8 +28,14 @@ export const articleAPI = createApi({
     fetchAllFilters: build.query<ICategory[], any>({
       query: () => ({
         url: '/articles/filters',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
       }),
       transformResponse: (response: AxiosResponse) => response.data,
+      transformErrorResponse(error): unknown {
+        console.log(error);
+      },
     }),
     fetchArticle: build.query<IArticle, number>({
       query: (id) => ({

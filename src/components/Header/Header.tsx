@@ -10,11 +10,11 @@ const Header = () => {
   const [searchCollapse, setSearchCollapse] = useState(false);
   const { data: categories = [] } = articleAPI.useFetchAllFiltersQuery('');
   /* const findCategoryTitleById = (id: number) => {
-                         if (categories) {
-                           const category = categories.find((category) => category.id === id);
-                           return category ? category.title : null;
-                         }
-                       };*/
+                               if (categories) {
+                                 const category = categories.find((category) => category.id === id);
+                                 return category ? category.title : null;
+                               }
+                             };*/
   const location = useLocation();
   const pathSegments = location.pathname.split('/').filter(Boolean);
 
@@ -102,7 +102,7 @@ const Header = () => {
                 </li>
                 {categories &&
                   categories.map((category) => (
-                    <li key={category.id} className={+currentCategory === category.id && 'active'}>
+                    <li key={category.id}>
                       <Link to={`/categories/${category.id}`}>{category.title}</Link>
                     </li>
                   ))}

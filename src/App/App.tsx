@@ -5,6 +5,8 @@ import Header from 'components/Header';
 import ArticleListPage from './pages/ArticleListPage';
 import ArticlePage from './pages/ArticlePage';
 import HomePage from './pages/HomePage';
+import Login from './pages/Login';
+import Registration from './pages/Registration';
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
         <Route path="/article">
           <Route path={':articleId'} element={<ArticlePage />} />
         </Route>
+        <Route path={'/registration'} element={<Registration />} />
+        <Route path={'/login'} element={<Login />} />
+        <Route path={'*'} element={<HomePage />} />
       </Routes>
       <Footer />
     </>
