@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { IArticle } from '../../Models/IArticle.ts';
 
 interface ArticleItemProps {
@@ -10,13 +11,13 @@ const ArticleItem: FC<ArticleItemProps> = ({ article, className }) => {
   return (
     <article className={`article ${className}`}>
       <div className="article-img">
-        <a href="#">
+        <Link to={`/article/${article.id}`}>
           <img src={article.image_url} alt="" />
-        </a>
+        </Link>
       </div>
       <div className="article-body">
         <h4 className="article-title">
-          <a href="#">{article.title}</a>
+          <Link to={`/article/${article.id}`}>{article.title}</Link>
         </h4>
         <ul className="article-meta">
           <li>
