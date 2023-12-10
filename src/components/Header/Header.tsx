@@ -10,16 +10,18 @@ const Header = () => {
   const [searchCollapse, setSearchCollapse] = useState(false);
   const { data: categories = [] } = articleAPI.useFetchAllFiltersQuery('');
   /* const findCategoryTitleById = (id: number) => {
-                               if (categories) {
-                                 const category = categories.find((category) => category.id === id);
-                                 return category ? category.title : null;
-                               }
-                             };*/
+                                                   if (categories) {
+                                                     const category = categories.find((category) => category.id === id);
+                                                     return category ? category.title : null;
+                                                   }
+                                                 };*/
   const location = useLocation();
   const pathSegments = location.pathname.split('/').filter(Boolean);
 
   // Предполагая, что URL имеет формат '/categories/имя_категории'
   const currentCategory = pathSegments[1];
+
+  const token = localStorage.getItem('access_token');
 
   return (
     <div>
@@ -40,11 +42,25 @@ const Header = () => {
                 <li>
                   <a href="#">Privacy</a>
                 </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-sign-in"></i> Login
-                  </a>
-                </li>
+                {!token && (
+                  <>
+                    <li>
+                      <Link to="/login">
+                        <i className="fa fa-sign-in"></i> Login
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/registration">
+                        <i className="fa fa-sign-in"></i> Registration
+                      </Link>
+                    </li>
+                  </>
+                )}
+                {token && (
+                  <li>
+                    <Link to="/me">Me</Link>
+                  </li>
+                )}
               </ul>
             </div>
             <div className="header-social">

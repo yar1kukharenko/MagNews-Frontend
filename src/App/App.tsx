@@ -6,6 +6,7 @@ import ArticleListPage from './pages/ArticleListPage';
 import ArticlePage from './pages/ArticlePage';
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
+import MePage from './pages/MePage/MePage.tsx';
 import Registration from './pages/Registration';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         </Route>
         <Route path={'/registration'} element={<Registration />} />
         <Route path={'/login'} element={<Login />} />
+        <Route path={'/me'} element={<MePage />} />
         <Route path={'*'} element={<HomePage />} />
       </Routes>
       <Footer />
