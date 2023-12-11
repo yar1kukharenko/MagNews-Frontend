@@ -3,4 +3,5 @@ export interface IComment {
   user_id: number;
   article_id: number;
   message: string;
+  is_approved: boolean;
 }

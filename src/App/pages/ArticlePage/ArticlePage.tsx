@@ -113,9 +113,12 @@ const ArticlePage = () => {
                   <h2 className="title">Comments</h2>
                 </div>
                 {comments &&
-                  comments.map((comment) => (
-                    <Comment key={comment.id} user_id={comment.user_id} message={comment.message} />
-                  ))}
+                  comments.map(
+                    (comment) =>
+                      !!comment.is_approved && (
+                        <Comment key={comment.id} user_id={comment.user_id} message={comment.message} />
+                      ),
+                  )}
               </div>
 
               <div className="article-reply-form">
