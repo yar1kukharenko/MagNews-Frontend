@@ -12,6 +12,8 @@ import { setupStore } from './store/store.ts';
 
 const store = setupStore();
 
+// Инициализация Echo с Pusher
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
