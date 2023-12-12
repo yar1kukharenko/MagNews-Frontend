@@ -1,5 +1,4 @@
-import imgWidget2 from 'assets/img/img-widget-2.jpg';
-import imgWidget3 from 'assets/img/img-widget-3.jpg';
+import { Link } from 'react-router-dom';
 import logoAlt from 'assets/img/logo-alt.png';
 
 const Footer = () => {
@@ -12,93 +11,13 @@ const Footer = () => {
               <div className="col-md-4">
                 <div className="footer-widget about-widget">
                   <div className="footer-logo">
-                    <a href="#" className="logo">
+                    <Link to="/" className="logo">
                       <img src={logoAlt} alt="" />
-                    </a>
-                    <p>
-                      Populo tritani laboramus ex mei, no eum iuvaret ceteros euripidis, ne alia sadipscing mei. Te
-                      inciderint cotidieque pro, ei iisque docendi qui.
-                    </p>
+                    </Link>
                   </div>
-                </div>
-                <div className="footer-widget subscribe-widget">
-                  <div className="widget-title">
-                    <h2 className="title">Subscribe to Newslatter</h2>
-                  </div>
-                  <form>
-                    <input className="input" type="email" placeholder="Enter Your Email" />
-                    <button className="input-btn">Subscribe</button>
-                  </form>
                 </div>
               </div>
-              <div className="col-md-4">
-                <div className="footer-widget">
-                  <div className="widget-title">
-                    <h2 className="title">Featured Posts</h2>
-                  </div>
-
-                  <article className="article widget-article">
-                    <div className="article-img">
-                      <a href="#">
-                        <img src={imgWidget2} alt="" />
-                      </a>
-                    </div>
-                    <div className="article-body">
-                      <h4 className="article-title">
-                        <a href="#">Duis urbanitas eam in, tempor consequat.</a>
-                      </h4>
-                      <ul className="article-meta">
-                        <li>
-                          <i className="fa fa-clock-o"></i> January 31, 2017
-                        </li>
-                        <li>
-                          <i className="fa fa-comments"></i> 33
-                        </li>
-                      </ul>
-                    </div>
-                  </article>
-                  <article className="article widget-article">
-                    <div className="article-img">
-                      <a href="#">
-                        <img src={imgWidget2} alt="" />
-                      </a>
-                    </div>
-                    <div className="article-body">
-                      <h4 className="article-title">
-                        <a href="#">Duis urbanitas eam in, tempor consequat.</a>
-                      </h4>
-                      <ul className="article-meta">
-                        <li>
-                          <i className="fa fa-clock-o"></i> January 31, 2017
-                        </li>
-                        <li>
-                          <i className="fa fa-comments"></i> 33
-                        </li>
-                      </ul>
-                    </div>
-                  </article>
-                  <article className="article widget-article">
-                    <div className="article-img">
-                      <a href="#">
-                        <img src={imgWidget3} alt="" />
-                      </a>
-                    </div>
-                    <div className="article-body">
-                      <h4 className="article-title">
-                        <a href="#">Duis urbanitas eam in, tempor consequat.</a>
-                      </h4>
-                      <ul className="article-meta">
-                        <li>
-                          <i className="fa fa-clock-o"></i> January 31, 2017
-                        </li>
-                        <li>
-                          <i className="fa fa-comments"></i> 33
-                        </li>
-                      </ul>
-                    </div>
-                  </article>
-                </div>
-              </div>
+              <div className="col-md-4"></div>
             </div>
           </div>
         </div>

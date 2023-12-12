@@ -10,11 +10,11 @@ const Header = () => {
   const [searchCollapse, setSearchCollapse] = useState(false);
   const { data: categories = [] } = articleAPI.useFetchAllFiltersQuery('');
   /* const findCategoryTitleById = (id: number) => {
-                                                   if (categories) {
-                                                     const category = categories.find((category) => category.id === id);
-                                                     return category ? category.title : null;
-                                                   }
-                                                 };*/
+                                                         if (categories) {
+                                                           const category = categories.find((category) => category.id === id);
+                                                           return category ? category.title : null;
+                                                         }
+                                                       };*/
   const location = useLocation();
   const pathSegments = location.pathname.split('/').filter(Boolean);
 
@@ -30,18 +30,6 @@ const Header = () => {
           <div className="container">
             <div className="header-links">
               <ul>
-                <li>
-                  <a href="#">About us</a>
-                </li>
-                <li>
-                  <a href="#">Contact</a>
-                </li>
-                <li>
-                  <a href="#">Advertisement</a>
-                </li>
-                <li>
-                  <a href="#">Privacy</a>
-                </li>
                 {!token && (
                   <>
                     <li>
@@ -61,35 +49,6 @@ const Header = () => {
                     <Link to="/me">Me</Link>
                   </li>
                 )}
-              </ul>
-            </div>
-            <div className="header-social">
-              <ul>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-google-plus"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-instagram"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-youtube"></i>
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
