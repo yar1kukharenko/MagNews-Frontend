@@ -1,18 +1,20 @@
 import '../App.css';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
-import { useEffect, useRef } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import Footer from 'components/Footer';
-import Header from 'components/Header';
-import ArticleListPage from './pages/ArticleListPage';
-import ArticlePage from './pages/ArticlePage';
-import HomePage from './pages/HomePage';
-import Login from './pages/Login';
-import MePage from './pages/MePage/MePage.tsx';
-import Registration from './pages/Registration';
+
 import 'react-toastify/dist/ReactToastify.min.css';
+
+const Footer = lazy(() => import('components/Footer'));
+const Header = lazy(() => import('components/Header'));
+const ArticleListPage = lazy(() => import('./pages/ArticleListPage'));
+const ArticlePage = lazy(() => import('./pages/ArticlePage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const Login = lazy(() => import('./pages/Login'));
+const MePage = lazy(() => import('./pages/MePage/MePage.tsx'));
+const Registration = lazy(() => import('./pages/Registration'));
 
 function App() {
   const echoInitialized = useRef(false);
@@ -42,7 +44,7 @@ function App() {
     }
   }, []);
   return (
-    <>
+    <Suspense fallback={<div>Загрузка...</div>}>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -69,7 +71,7 @@ function App() {
         <Route path={'*'} element={<HomePage />} />
       </Routes>
       <Footer />
-    </>
+    </Suspense>
   );
 }
 
