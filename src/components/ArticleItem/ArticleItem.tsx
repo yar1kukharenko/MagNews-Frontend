@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { IArticle } from '../../Models/IArticle.ts';
 
@@ -7,7 +7,7 @@ interface ArticleItemProps {
   className?: string;
 }
 
-const ArticleItem: FC<ArticleItemProps> = ({ article, className }) => {
+const ArticleItem: FC<ArticleItemProps> = memo(({ article, className }) => {
   return (
     <article className={`article ${className}`}>
       <div className="article-img">
@@ -30,6 +30,8 @@ const ArticleItem: FC<ArticleItemProps> = ({ article, className }) => {
       </div>
     </article>
   );
-};
+});
+
+ArticleItem.displayName = 'ArticleItem';
 
 export default ArticleItem;

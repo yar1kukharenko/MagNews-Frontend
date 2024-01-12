@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { articleAPI } from '../../services/ArticleService.ts';
 
 interface CommentProps {
@@ -6,7 +6,7 @@ interface CommentProps {
   message: string;
 }
 
-const Comment: FC<CommentProps> = ({ user_id, message }) => {
+const Comment: FC<CommentProps> = memo(({ user_id, message }) => {
   const { data: user } = articleAPI.useFetchUserQuery(user_id);
   return (
     <div className="media">
@@ -18,6 +18,8 @@ const Comment: FC<CommentProps> = ({ user_id, message }) => {
       </div>
     </div>
   );
-};
+});
+
+Comment.displayName = 'Comment';
 
 export default Comment;

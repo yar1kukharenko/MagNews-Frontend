@@ -1,5 +1,5 @@
 import * as classNames from 'classnames';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoAlt from 'assets/img/logo-alt.png';
 import logo from 'assets/img/logo.png';
@@ -9,12 +9,13 @@ const Header = () => {
   const [navCollapse, setNavCollapse] = useState(false);
   const [searchCollapse, setSearchCollapse] = useState(false);
   const { data: categories = [] } = articleAPI.useFetchAllFiltersQuery('');
-  /* const findCategoryTitleById = (id: number) => {
-                                                         if (categories) {
-                                                           const category = categories.find((category) => category.id === id);
-                                                           return category ? category.title : null;
-                                                         }
-                                                       };*/
+  const toggleNavCollapse = useCallback(() => {
+    setNavCollapse((prevNavCollapse) => !prevNavCollapse);
+  }, []);
+
+  const toggleSearchCollapse = useCallback(() => {
+    setSearchCollapse((prevSearchCollapse) => !prevSearchCollapse);
+  }, []);
   const location = useLocation();
   const pathSegments = location.pathname.split('/').filter(Boolean);
 
@@ -86,11 +87,11 @@ const Header = () => {
             <div className="button-nav">
               <button
                 className={classNames('search-collapse-btn', searchCollapse && 'active')}
-                onClick={() => setSearchCollapse(!searchCollapse)}
+                onClick={toggleSearchCollapse}
               >
                 <i className="fa fa-search"></i>
               </button>
-              <button className="nav-collapse-btn" onClick={() => setNavCollapse(!navCollapse)}>
+              <button className="nav-collapse-btn" onClick={toggleNavCollapse}>
                 <i className="fa fa-bars"></i>
               </button>
               <div className={classNames('search-form', searchCollapse && 'search-collapse')}>
