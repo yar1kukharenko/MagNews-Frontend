@@ -6,15 +6,17 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const login = async (event) => {
+  const login = (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, { email, password });
-      localStorage.setItem('access_token', response.data.access_token);
-      navigate('/');
-    } catch (err) {
-      console.error(err);
-    }
+    axios
+      .post('http://localhost:8080/api/auth/login', { email, password })
+      .then((response) => {
+        localStorage.setItem('access_token', response.data.access_token);
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   return (
     <div className={'section'}>

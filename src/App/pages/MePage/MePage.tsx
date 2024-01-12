@@ -9,81 +9,41 @@ const MePage = () => {
   useAuthCheck();
   const navigate = useNavigate();
   const [user, setUser] = useState<IUser | null>(null);
-  /* useEffect(() => {
-         axios
-           .post(
-             'http://localhost:8080/api/auth/me',
-             {},
-             {
-               headers: {
-                 authorization: `Bearer ${localStorage.getItem('access_token')}`,
-               },
-             },
-           )
-           .then((res) => {
-             setUser(res.data);
-           })
-           .catch((e) => {
-             console.log(e);
-           });
-       }, []);
-     
-       const logout = (e: React.MouseEvent<HTMLButtonElement>) => {
-         e.preventDefault();
-         axios
-           .post(
-             'http://localhost:8080/api/auth/logout',
-             {},
-             {
-               headers: {
-                 authorization: `Bearer ${localStorage.getItem('access_token')}`,
-               },
-             },
-           )
-           .then(() => {
-             localStorage.removeItem('access_token');
-             navigate('/login');
-           });
-       };*/
-
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const accessToken = localStorage.getItem('access_token'); // Кэширование токена
-        const response = await axios.post(
-          `http://localhost:8080/api/auth/me`,
-          {},
-          {
-            headers: { authorization: `Bearer ${accessToken}` },
-          },
-        );
-        setUser(response.data);
-      } catch (error) {
-        console.error(error);
-        // Обработка ошибок, возможно редирект или сообщение пользователю
-      }
-    };
-
-    fetchUserData();
-  }, []);
-
-  const logout = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    try {
-      const accessToken = localStorage.getItem('access_token');
-      await axios.post(
-        `http://localhost:8080/api/auth/logout`,
+    axios
+      .post(
+        'http://localhost:8080/api/auth/me',
         {},
         {
-          headers: { authorization: `Bearer ${accessToken}` },
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          },
         },
-      );
-      localStorage.removeItem('access_token');
-      navigate('/login');
-    } catch (error) {
-      console.error(error);
-      // Обработка ошибок
-    }
+      )
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
+  const logout = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    axios
+      .post(
+        'http://localhost:8080/api/auth/logout',
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          },
+        },
+      )
+      .then(() => {
+        localStorage.removeItem('access_token');
+        navigate('/login');
+      });
   };
 
   return (
